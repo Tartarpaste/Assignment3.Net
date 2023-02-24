@@ -1,2 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using MagicTord_N_SondreTheAPI.Models;
+using Microsoft.EntityFrameworkCore;
+
+using (var context2 = new DBContext())
+{
+    context2.Database.Migrate();
+}
