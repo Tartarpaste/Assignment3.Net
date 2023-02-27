@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\MagicTord-N-SondreTheAPI.csproj": {}
+    "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\MagicTord-N-SondreTheAPI.csproj": {
+    "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\MagicTord-N-SondreTheAPI.csproj",
-        "projectName": "MagicTord-N-SondreTheAPI",
-        "projectPath": "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\MagicTord-N-SondreTheAPI.csproj",
+        "projectUniqueName": "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj",
+        "projectName": "MagicTord-N-SondreTheWebAPI",
+        "projectPath": "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj",
         "packagesPath": "C:\\Users\\SReinh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\obj\\",
+        "outputPath": "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SReinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -63,6 +63,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.3, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
             }
           },
           "imports": [
@@ -77,6 +81,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
