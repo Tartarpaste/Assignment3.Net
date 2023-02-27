@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SReinh\\Source\\Repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\MagicTord-N-SondreTheAPI.csproj": {}
+    "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\MagicTord-N-SondreTheAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SReinh\\Source\\Repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\MagicTord-N-SondreTheAPI.csproj": {
+    "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\MagicTord-N-SondreTheAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SReinh\\Source\\Repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\MagicTord-N-SondreTheAPI.csproj",
+        "projectUniqueName": "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\MagicTord-N-SondreTheAPI.csproj",
         "projectName": "MagicTord-N-SondreTheAPI",
-        "projectPath": "C:\\Users\\SReinh\\Source\\Repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\MagicTord-N-SondreTheAPI.csproj",
+        "projectPath": "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\MagicTord-N-SondreTheAPI.csproj",
         "packagesPath": "C:\\Users\\SReinh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SReinh\\Source\\Repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\obj\\",
+        "outputPath": "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SReinh\\AppData\\Roaming\\NuGet\\NuGet.Config",

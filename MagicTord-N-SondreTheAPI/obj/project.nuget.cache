@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kILm0Bt6hBo8dBZqwkNO/fpPhvypeEE9Kw6U7SVs4DNDPL+D4FsQ4IllxpoDTfbvQh7+84oMIr8V4FCRIsqWJA==",
+  "dgSpecHash": "hgtfUNggrD2y9bc65Kcm9CdnWSowMlGawTIbqh5uMvN632W6kVmts76BVBj8HcsdWy2smIVUTZJYKLUplVkOUA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SReinh\\Source\\Repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\MagicTord-N-SondreTheAPI.csproj",
+  "projectFilePath": "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheAPI\\MagicTord-N-SondreTheAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SReinh\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\SReinh\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
