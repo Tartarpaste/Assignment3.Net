@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MagicTord_N_SondreTheAPI.Models
 {
@@ -29,6 +24,9 @@ namespace MagicTord_N_SondreTheAPI.Models
 
         [Required, StringLength(300)]
         public string TrailerURL { get; set; }
+
+        [Required]
+        public int FranchiseID { get; set; }
 
         public virtual ICollection<Character> Characters { get; set; }
             
