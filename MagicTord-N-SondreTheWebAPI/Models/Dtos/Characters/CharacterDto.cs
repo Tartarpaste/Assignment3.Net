@@ -9,6 +9,6 @@ namespace MagicTord_N_SondreTheWebAPI.Models.Dtos.Characters
         public string Alias { get; set; } = null!;
         public string Gender { get; set; } = null!;
         public string PictureURL { get; set; } = null!;
-        public virtual List<int> Movies { get; } = null!;
+        public virtual List<Movie> Movies { get; set; } = null!;
     }
 }
