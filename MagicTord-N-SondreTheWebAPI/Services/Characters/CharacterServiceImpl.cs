@@ -39,24 +39,45 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Characters
 
         }
 
-        public Task<Character> GetByIdAsync(int id)
+        public async Task<Character> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            //ADD null check
+            return await _dBContext.Characters
+                .Where(p => p.CharacterID == id)
+                .Include(p => p.Movies)
+                .FirstAsync();
+
+
         }
 
-        public Task<ICollection<Movie>> GetCharacterMoviesAsync(int characterID)
+        public async Task<ICollection<Movie>> GetCharacterMoviesAsync(int characterID)
         {
-            throw new NotImplementedException();
+            return await _dBContext.Characters
+                 .Where(p => p.CharacterID == characterID)
+                 .Select(p => p.Movies)
+                 .FirstAsync();
+
         }
 
-        public Task UpdateAsync(Character entity)
+        public async Task UpdateAsync(Character entity)
         {
-            throw new NotImplementedException();
+            _dBContext.Entry(entity).State = EntityState.Modified;
+            await _dBContext.SaveChangesAsync();
+
         }
 
-        public Task UpdateCharacterMoviesAsync(int[] movieIDS, int characterID)
+        public async Task UpdateCharacterMoviesAsync(HashSet<Movie> movieIDS, int characterID)
         {
-            throw new NotImplementedException();
+            Character character = await _dBContext.Characters
+                .Where(p => p.CharacterID == characterID)
+                .FirstAsync();
+            // Set the characters movies
+            character.Movies = movieIDS;
+            _dBContext.Entry(character).State = EntityState.Modified;
+            // Save all the changes
+            await _dBContext.SaveChangesAsync();
+
         }
+
     }
 }

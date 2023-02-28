@@ -124,3 +124,13 @@ C:\Users\SReinh\Source\Repos\Assignment3.Net\MagicTord-N-SondreTheAPI\obj\Debug\
 C:\Users\SReinh\Source\Repos\Assignment3.Net\MagicTord-N-SondreTheAPI\obj\Debug\net6.0\MagicTord-N-SondreTheAPI.pdb
 C:\Users\SReinh\Source\Repos\Assignment3.Net\MagicTord-N-SondreTheAPI\obj\Debug\net6.0\MagicTord-N-SondreTheAPI.genruntimeconfig.cache
 C:\Users\SReinh\Source\Repos\Assignment3.Net\MagicTord-N-SondreTheAPI\obj\Debug\net6.0\ref\MagicTord-N-SondreTheAPI.dll
+C:\Users\SReinh\source\repos\Assignment3.Net\MagicTord-N-SondreTheAPI\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\SReinh\source\repos\Assignment3.Net\MagicTord-N-SondreTheAPI\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\SReinh\source\repos\Assignment3.Net\MagicTord-N-SondreTheAPI\bin\Debug\net6.0\Humanizer.dll
+C:\Users\SReinh\source\repos\Assignment3.Net\MagicTord-N-SondreTheAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\SReinh\source\repos\Assignment3.Net\MagicTord-N-SondreTheAPI\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\SReinh\source\repos\Assignment3.Net\MagicTord-N-SondreTheAPI\bin\Debug\net6.0\Mono.TextTemplating.dll
+C:\Users\SReinh\source\repos\Assignment3.Net\MagicTord-N-SondreTheAPI\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\SReinh\source\repos\Assignment3.Net\MagicTord-N-SondreTheAPI\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\SReinh\source\repos\Assignment3.Net\MagicTord-N-SondreTheAPI\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\SReinh\source\repos\Assignment3.Net\MagicTord-N-SondreTheAPI\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

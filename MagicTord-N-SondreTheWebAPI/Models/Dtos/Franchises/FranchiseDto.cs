@@ -2,6 +2,9 @@
 
 namespace MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises
 {
+    /// <summary>
+    /// We don't need to have any other dto's for put because we use the same values
+    /// </summary>
     public class FranchiseDto
     {
         public int FranchiseID { get; set; }
