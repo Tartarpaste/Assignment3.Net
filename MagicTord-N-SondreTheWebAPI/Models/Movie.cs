@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MagicTord_N_SondreTheAPI.Models
+namespace MagicTord_N_SondreTheWebAPI.Models
 {
     public class Movie
     {
@@ -28,6 +28,7 @@ namespace MagicTord_N_SondreTheAPI.Models
         [Required]
         public int FranchiseID { get; set; }
 
-        public virtual ICollection<Character> Characters { get; set; } = null!;
+        [Required]
+        public virtual ICollection<Character> Characters { get; set; } = new HashSet<Character>();
     }
 }
