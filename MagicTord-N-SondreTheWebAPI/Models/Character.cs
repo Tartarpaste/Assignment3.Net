@@ -19,6 +19,6 @@ namespace MagicTord_N_SondreTheWebAPI.Models
         [Required,StringLength(300)]
         public string PictureURL { get; set; } = null!;
         [Required]
-        public virtual ICollection<Movie> Movies { get;} = new HashSet<Movie>();
+        public virtual ICollection<Movie> Movies { get; set; } = new HashSet<Movie>();
     }
 }
