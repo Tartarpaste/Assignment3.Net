@@ -1,5 +1,3 @@
-
-
 using MagicTord_N_SondreTheWebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;

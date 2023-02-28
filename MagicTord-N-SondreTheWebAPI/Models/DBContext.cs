@@ -5,11 +5,17 @@ namespace MagicTord_N_SondreTheWebAPI.Models
 {
     public class DBContext: DbContext
     {
+
+        public DBContext() { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(ConnectionStringHelper.getConnectionString());
         }
 
+        public virtual DbSet<Character> Characters { get; set; } = null!;
+        public virtual DbSet<Franchise> Franchises { get; set; } = null!;
+        public virtual DbSet<Movie> Movies { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -60,8 +66,6 @@ namespace MagicTord_N_SondreTheWebAPI.Models
                             );
                     }
                 );
-
-
         }
     }
 }

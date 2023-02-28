@@ -1,4 +1,5 @@
 ﻿using MagicTord_N_SondreTheWebAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MagicTord_N_SondreTheWebAPI.Services.Characters
 {
@@ -21,18 +22,18 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Characters
             
         }
 
-        public async Task DeleteByIdAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            var character = await _dBContext.Character.FindAsync(id);
+            var character = await _dBContext.Characters.FindAsync(id);
             if(character == null)
             {
                 _logger.LogError("Rick Astley fan not found with Id: " + id);
             }
         }
 
-        public Task<ICollection<Character>> GetAllAsync()
+        public async Task<ICollection<Character>> GetAllAsync()
         {
-            return await _dBContext.Character
+            return await _dBContext.Characters
                 .Include(p => p.Movies)
                 .ToListAsync();
 
