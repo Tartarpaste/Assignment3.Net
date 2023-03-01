@@ -5,10 +5,8 @@ namespace MagicTord_N_SondreTheWebAPI.Models
 {
     public class DBContext: DbContext
     {
-        public DBContext()
-        { }
-        public DBContext(DbContextOptions<DBContext> options) : base(options)
-        {}
+        public DBContext() { }
+        public DBContext(DbContextOptions<DBContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -18,6 +16,7 @@ namespace MagicTord_N_SondreTheWebAPI.Models
         public virtual DbSet<Character> Characters { get; set; } = null!;
         public virtual DbSet<Franchise> Franchises { get; set; } = null!;
         public virtual DbSet<Movie> Movies { get; set; } = null!;
+        public virtual DbSet<CharacterMovie> CharacterMovies { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -47,27 +46,26 @@ namespace MagicTord_N_SondreTheWebAPI.Models
                 new Character() { CharacterID = 3, FullName = "Eger Taronton", Alias = "The King", Gender = "Male", PictureURL = "https://i2-prod.chroniclelive.co.uk/incoming/article18860908.ece/ALTERNATES/s615/1_snr_nec_010920dale_01.jpg" },
                 new Character() { CharacterID = 4, FullName = "Tharlize Cheron", Alias = "Furiosa", Gender = "Female", PictureURL = "https://www.indiewire.com/wp-content/uploads/2021/05/furiosa-movie.png?w=780" }
                 );
-           
+
             modelBuilder.Entity<Movie>()
-                .HasMany(mov => mov.Characters)
-                .WithMany(cha => cha.Movies)
-                .UsingEntity<Dictionary<string, object>>(
-                "CharacterMovie",
-                    x => x.HasOne<Character>().WithMany().HasForeignKey("CharacterID"),
-                    y => y.HasOne<Movie>().WithMany().HasForeignKey("MovieID"),
-                    xy =>
-                    {
-                        xy.HasKey("MovieID", "CharacterID");
-                        xy.HasData(
-                            new { MovieID = 1, CharacterID = 1 },
-                            new { MovieID = 1, CharacterID = 2 },
-                            new { MovieID = 2, CharacterID = 3 },
-                            new { MovieID = 2, CharacterID = 2 },
-                            new { MovieID = 3, CharacterID = 4 },
-                            new { MovieID = 3, CharacterID = 1 }
-                            );
-                    }
-                );
+            .HasMany(mov => mov.Characters)
+            .WithMany(cha => cha.Movies)
+            .UsingEntity<CharacterMovie>(
+                mc => mc.HasOne<Character>().WithMany(),
+                mc => mc.HasOne<Movie>().WithMany(),
+                mc =>
+                {
+                    mc.ToTable("CharacterMovie");
+                    mc.HasKey(mc => new { mc.MovieID, mc.CharacterID });
+                    mc.HasData(
+                        new CharacterMovie { MovieID = 1, CharacterID = 1 },
+                        new CharacterMovie { MovieID = 1, CharacterID = 2 },
+                        new CharacterMovie { MovieID = 2, CharacterID = 3 },
+                        new CharacterMovie { MovieID = 2, CharacterID = 2 },
+                        new CharacterMovie { MovieID = 3, CharacterID = 4 },
+                        new CharacterMovie { MovieID = 3, CharacterID = 1 }
+                    );
+                });
         }
     }
 }

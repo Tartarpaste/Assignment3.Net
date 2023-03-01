@@ -6,6 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MagicTord_N_SondreTheWebAPI.Models;
+using AutoMapper;
+using MagicTord_N_SondreTheWebAPI.Services.Franchises;
+using MagicTord_N_SondreTheWebAPI.Services.Movies;
+using MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises;
+using MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies;
+using System.Net;
+using MagicTord_N_SondreTheWebAPI.Models.Dtos.Characters;
 
 namespace MagicTord_N_SondreTheWebAPI.Controllers
 {
@@ -14,31 +21,50 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
     public class MoviesController : ControllerBase
     {
         private readonly DBContext _context;
+        private readonly IMapper _mapper;
+        private readonly IMovieService _movieService;
 
-        public MoviesController(DBContext context)
+        public MoviesController(IMapper mapper, DBContext context, IMovieService movieService)
         {
             _context = context;
+            _movieService = movieService;
+            _mapper = mapper;
+
         }
 
         // GET: api/Movies
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Movie>>> GetMovie()
+        public async Task<ActionResult<IEnumerable<Movie>>> GetMovies()
         {
-            return await _context.Movies.ToListAsync();
+            return Ok(
+                _mapper.Map<List<MovieDto>>(
+                    await _movieService.GetAllAsync())
+                );
         }
 
         // GET: api/Movies/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Movie>> GetMovie(int id)
         {
-            var movie = await _context.Movies.FindAsync(id);
-
-            if (movie == null)
+            try
             {
-                return NotFound();
+                return Ok(_mapper.Map<MovieDto>(
+                        await _movieService.GetByIdAsync(id))
+                    );
+            }
+            catch (Exception ex)
+            {
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                    );
             }
 
-            return movie;
         }
 
         // PUT: api/Movies/5
@@ -103,5 +129,32 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
         {
             return _context.Movies.Any(e => e.MovieID == id);
         }
+
+
+        [HttpGet("{id}/characters")]
+        public async Task<ActionResult<IEnumerable<CharacterDto>>> GetCharactersForMovieAsync(int id)
+        {
+            try
+            {
+                return Ok(
+                        _mapper.Map<List<CharacterDto>>(
+                            await _movieService.GetMovieCharactersAsync(id)
+                        )
+                    );
+            }
+            catch (Exception ex)
+            {
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                    );
+            }
+        }
+
     }
 }

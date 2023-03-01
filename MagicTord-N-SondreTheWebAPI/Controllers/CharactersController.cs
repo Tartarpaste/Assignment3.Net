@@ -9,6 +9,9 @@ using MagicTord_N_SondreTheWebAPI.Models;
 using MagicTord_N_SondreTheWebAPI.Models.Dtos.Characters;
 using AutoMapper;
 using MagicTord_N_SondreTheWebAPI.Services.Characters;
+using MagicTord_N_SondreTheWebAPI.Services.Movies;
+using System.Net;
+using MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies;
 
 namespace MagicTord_N_SondreTheWebAPI.Controllers
 {
@@ -30,7 +33,7 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
 
         // GET: api/v1/Characters
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CharacterDto>>> GetCharacters()
+        public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
         {
             return Ok(
                 _mapper.Map<List<CharacterDto>>(
@@ -114,6 +117,31 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
         private bool CharacterExists(int id)
         {
             return _context.Characters.Any(e => e.CharacterID == id);
+        }
+
+        [HttpGet("{id}/movies")]
+        public async Task<ActionResult<IEnumerable<MovieDto>>> GetMoviesForCharactersAsync(int id)
+        {
+            try
+            {
+                return Ok(
+                _mapper.Map<List<MovieDto>>(
+                            await _characterService.GetCharacterMoviesAsync(id)
+                        )
+                    );
+            }
+            catch (Exception ex)
+            {
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                    );
+            }
         }
     }
 }

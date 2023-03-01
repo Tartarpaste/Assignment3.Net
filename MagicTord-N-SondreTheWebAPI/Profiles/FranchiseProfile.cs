@@ -12,9 +12,9 @@ namespace MagicTord_N_SondreTheWebAPI.Profiles
 
             CreateMap<FranchisePostDto, Franchise>();
 
-            CreateMap<Character, CharacterDto>()
+            CreateMap<Franchise, FranchiseDto>()
                     .ForMember(dto => dto.Movies, opt => opt
-                    .MapFrom(p => p.Movies.Select(s => s.MovieID).ToList()));
+                    .MapFrom(c => c.Movies.Select(m => m.MovieID).ToList()));
         }
        
 

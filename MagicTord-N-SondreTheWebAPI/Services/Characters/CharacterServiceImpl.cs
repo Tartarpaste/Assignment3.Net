@@ -52,10 +52,13 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Characters
 
         public async Task<ICollection<Movie>> GetCharacterMoviesAsync(int characterID)
         {
-            return await _dBContext.Characters
-                 .Where(p => p.CharacterID == characterID)
-                 .Select(p => p.Movies)
-                 .FirstAsync();
+            var query = _dBContext.Set<Movie>()
+                .Where(m => _dBContext.Set<CharacterMovie>()
+                    .Where(cm => cm.CharacterID == characterID)
+                    .Select(cm => cm.MovieID)
+                    .Contains(m.MovieID));
+
+            return await query.ToListAsync();
 
         }
 

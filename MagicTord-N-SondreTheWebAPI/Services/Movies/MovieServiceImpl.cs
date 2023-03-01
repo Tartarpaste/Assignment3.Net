@@ -1,5 +1,6 @@
 ﻿using MagicTord_N_SondreTheWebAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace MagicTord_N_SondreTheWebAPI.Services.Movies
 {
@@ -33,29 +34,94 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Movies
         public async Task<ICollection<Movie>> GetAllAsync()
         {
             return await _dBContext.Movies
-                .Include(p => p.Characters)
-                .ToListAsync();
-
+                 .Select(m => new Movie
+                 {
+                     MovieID = m.MovieID,
+                     MovieTitle = m.MovieTitle,
+                     Genre = m.Genre,
+                     ReleaseYear = m.ReleaseYear,
+                     Director = m.Director,
+                     PictureURL = m.PictureURL,
+                     TrailerURL = m.TrailerURL,
+                     FranchiseID = m.FranchiseID,
+                     Characters = m.Characters.Select(c => new Character
+                     {
+                         CharacterID = c.CharacterID,
+                         FullName = c.FullName,
+                         Alias = c.Alias,
+                         Gender = c.Gender,
+                         PictureURL = c.PictureURL,
+                         Movies = c.Movies.Select(n => new Movie
+                         {
+                             MovieID = n.MovieID,
+                             MovieTitle = n.MovieTitle,
+                             Genre = n.Genre,
+                             ReleaseYear = n.ReleaseYear,
+                             Director = n.Director,
+                             PictureURL = n.PictureURL,
+                             TrailerURL = n.TrailerURL,
+                             FranchiseID = n.FranchiseID,
+                         }).ToList()
+                         // Other movie properties
+                     }).ToList()
+                 })
+                 .ToListAsync();
         }
 
         public async Task<Movie> GetByIdAsync(int id)
         {
-            //ADD null check
-            return await _dBContext.Movies
-                .Where(p => p.MovieID == id)
-                .Include(p => p.Characters)
-                .FirstAsync();
+            var movie = await _dBContext.Movies
+                .Where(m => m.MovieID == id)
+                .Select(m => new Movie
+                {
+                    MovieID = m.MovieID,
+                    MovieTitle = m.MovieTitle,
+                    Genre = m.Genre,
+                    ReleaseYear = m.ReleaseYear,
+                    Director = m.Director,
+                    PictureURL = m.PictureURL,
+                    TrailerURL = m.TrailerURL,
+                    FranchiseID = m.FranchiseID,
+                    Characters = m.Characters.Select(c => new Character
+                    {
+                        CharacterID = c.CharacterID,
+                        FullName = c.FullName,
+                        Alias = c.Alias,
+                        Gender = c.Gender,
+                        PictureURL = c.PictureURL,
+                        Movies = c.Movies.Select(n => new Movie
+                        {
+                            MovieID = n.MovieID,
+                            MovieTitle = n.MovieTitle,
+                            Genre = n.Genre,
+                            ReleaseYear = n.ReleaseYear,
+                            Director = n.Director,
+                            PictureURL = n.PictureURL,
+                            TrailerURL = n.TrailerURL,
+                            FranchiseID = n.FranchiseID,
+                        }).ToList()
+                        // Other movie properties
+                    }).ToList()
+                }).FirstOrDefaultAsync();
 
+            if (movie == null)
+            {
+                // Handle null case
+                throw new Exception($"Movie with ID {id} not found.");
+            }
 
+            return movie;
         }
 
         public async Task<ICollection<Character>> GetMovieCharactersAsync(int movieID)
         {
-            return await _dBContext.Movies
-                 .Where(p => p.MovieID == movieID)
-                 .Select(p => p.Characters)
-                 .FirstAsync();
+            var query = _dBContext.Set<Character>()
+                .Where(c => _dBContext.Set<CharacterMovie>()
+                    .Where(cm => cm.MovieID == movieID)
+                    .Select(cm => cm.CharacterID)
+                    .Contains(c.CharacterID));
 
+            return await query.ToListAsync();
         }
 
         public async Task UpdateAsync(Movie entity)
