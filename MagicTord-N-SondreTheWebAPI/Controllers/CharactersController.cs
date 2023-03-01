@@ -30,7 +30,7 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             _mapper = mapper;   
             
         }
-        
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CharacterDto>>> GetCharacters()
         {
@@ -39,8 +39,7 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
                     await _characterService.GetAllAsync())
                 );
         }
-        
-        
+
         // GET: api/v1/Characters/1
         [HttpGet("{id}")]
         public async Task<ActionResult<CharacterDto>> GetCharacter(int id)
@@ -63,7 +62,7 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
                     }
                     );
             }
-            
+
         }
 
         // PUT: api/v1/Characters/5
@@ -107,21 +106,22 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
         // POST: api/v1/Characters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Character>> PostCharacter(Character Character)
+        public async Task<ActionResult<CharacterDto>> PostCharacter(Character Character)
         {
             _context.Characters.Add(Character);
             await _context.SaveChangesAsync();
             
             return CreatedAtAction("GetCharacter", new { id = Character.CharacterID }, Character);
         }
-        
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCharacter(int id)
         {
             try
             {
                 await _characterService.DeleteAsync(id);
-                return NoContent();
+                return Ok(_mapper.Map<CharacterDto>(
+                        await _characterService.GetByIdAsync(id)));
             }
             catch (Exception ex)
             {
@@ -136,8 +136,8 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
                     );
             }
         }
-        
-        
+
+
         private bool CharacterExists(int id)
         {
             return _context.Characters.Any(e => e.CharacterID == id);

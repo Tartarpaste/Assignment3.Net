@@ -25,7 +25,7 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Characters
         public async Task DeleteAsync(int id)
         {
             var character = await _dBContext.Characters.FindAsync(id);
-            
+
             if (character != null)
             {
                 // Set foreign key properties to null
@@ -33,7 +33,7 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Characters
                 {
                     movie.FranchiseID = 0;
                 }
-                
+
                 // Delete the character
                 _dBContext.Remove(character);
                 await _dBContext.SaveChangesAsync();
@@ -43,8 +43,9 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Characters
                 _logger.LogError("Rick Astley fan not found with Id: " + id);
             }
         }
-        
-        
+
+
+
         public async Task<ICollection<Character>> GetAllAsync()
         {
             return await _dBContext.Characters
@@ -80,8 +81,8 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Characters
         
         public async Task<Character> GetByIdAsync(int id)
         {
-             var character = await _dBContext.Characters
-                .Where(c => c.CharacterID == id)
+            return await _dBContext.Characters
+                .Where(p => p.CharacterID == id)
                 .Select(c => new Character
                 {
                     CharacterID = c.CharacterID,
@@ -110,14 +111,6 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Characters
                     }).ToList()
                 })
                 .FirstOrDefaultAsync();
-
-            if (character == null)
-            {
-                // Handle null case
-                throw new Exception($"Character with ID {id} not found.");
-            }
-
-            return character;
         }
 
         public async Task<ICollection<Movie>> GetCharacterMoviesAsync(int characterID)
