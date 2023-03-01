@@ -26,9 +26,22 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Franchises
         public async Task DeleteAsync(int id)
         {
             var franchise = await _dBContext.Franchises.FindAsync(id);
-            if (franchise == null)
+
+            if (franchise != null)
             {
-                _logger.LogError("Rick Astley Franchise not found with Id: " + id);
+                // Set foreign key properties to null
+                foreach (var movie in franchise.Movies)
+                {
+                    movie.FranchiseID = 0;
+                }
+
+                // Delete the character
+                _dBContext.Remove(franchise);
+                await _dBContext.SaveChangesAsync();
+            }
+            else
+            {
+                _logger.LogError("Rick Astley fan not found with Id: " + id);
             }
         }
 

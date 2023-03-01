@@ -25,29 +25,92 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Characters
         public async Task DeleteAsync(int id)
         {
             var character = await _dBContext.Characters.FindAsync(id);
-            if(character == null)
+
+            if (character != null)
+            {
+                // Set foreign key properties to null
+                foreach (var movie in character.Movies)
+                {
+                    movie.FranchiseID = 0;
+                }
+
+                // Delete the character
+                _dBContext.Remove(character);
+                await _dBContext.SaveChangesAsync();
+            }
+            else
             {
                 _logger.LogError("Rick Astley fan not found with Id: " + id);
             }
         }
 
+
+
         public async Task<ICollection<Character>> GetAllAsync()
         {
             return await _dBContext.Characters
-                .Include(p => p.Movies)
+                .Select(c => new Character
+                {
+                    CharacterID = c.CharacterID,
+                    FullName = c.FullName,
+                    Alias = c.Alias,
+                    Gender = c.Gender,
+                    PictureURL = c.PictureURL,
+                    Movies = c.Movies.Select(m => new Movie
+                    {
+                        MovieID = m.MovieID,
+                        MovieTitle = m.MovieTitle,
+                        Genre = m.Genre,
+                        ReleaseYear = m.ReleaseYear,
+                        Director = m.Director,
+                        PictureURL = m.PictureURL,
+                        TrailerURL = m.TrailerURL,
+                        FranchiseID = m.FranchiseID,
+                        Characters = m.Characters.Select(c => new Character
+                        {
+                            CharacterID = c.CharacterID,
+                            FullName = c.FullName,
+                            Alias = c.Alias,
+                            Gender = c.Gender,
+                            PictureURL = c.PictureURL,
+                        }).ToList()
+                    }).ToList()
+                })
                 .ToListAsync();
-
         }
 
         public async Task<Character> GetByIdAsync(int id)
         {
-            //ADD null check
             return await _dBContext.Characters
                 .Where(p => p.CharacterID == id)
-                .Include(p => p.Movies)
-                .FirstAsync();
-
-
+                .Select(c => new Character
+                {
+                    CharacterID = c.CharacterID,
+                    FullName = c.FullName,
+                    Alias = c.Alias,
+                    Gender = c.Gender,
+                    PictureURL = c.PictureURL,
+                    Movies = c.Movies.Select(m => new Movie
+                    {
+                        MovieID = m.MovieID,
+                        MovieTitle = m.MovieTitle,
+                        Genre = m.Genre,
+                        ReleaseYear = m.ReleaseYear,
+                        Director = m.Director,
+                        PictureURL = m.PictureURL,
+                        TrailerURL = m.TrailerURL,
+                        FranchiseID = m.FranchiseID,
+                        Characters = m.Characters.Select(c => new Character
+                        {
+                            CharacterID = c.CharacterID,
+                            FullName = c.FullName,
+                            Alias = c.Alias,
+                            Gender = c.Gender,
+                            PictureURL = c.PictureURL,
+                        }).ToList()
+                    }).ToList()
+                })
+                .FirstOrDefaultAsync();
         }
 
         public async Task<ICollection<Movie>> GetCharacterMoviesAsync(int characterID)
