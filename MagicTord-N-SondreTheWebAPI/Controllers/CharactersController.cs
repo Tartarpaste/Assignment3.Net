@@ -9,6 +9,12 @@ using MagicTord_N_SondreTheWebAPI.Models;
 using MagicTord_N_SondreTheWebAPI.Models.Dtos.Characters;
 using AutoMapper;
 using MagicTord_N_SondreTheWebAPI.Services.Characters;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+using MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises;
+using MagicTord_N_SondreTheWebAPI.Services.Franchises;
+using System.Net;
+using MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies;
 
 namespace MagicTord_N_SondreTheWebAPI.Controllers
 {
@@ -29,6 +35,7 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
         }
 
         // GET: api/v1/Characters
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CharacterDto>>> GetCharacters()
         {
@@ -41,17 +48,53 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
 
         // GET: api/v1/Characters/1
         [HttpGet("{id}")]
-        public async Task<ActionResult<Character>> GetCharacter(int id)
+        public async Task<ActionResult<CharacterDto>> GetCharacter(int id)
         {
-            var Character = await _context.Characters.FindAsync(id);
-
-            if (Character == null)
+            try
             {
-                return NotFound();
+                return Ok(_mapper.Map<CharacterDto>(
+                        await _characterService.GetByIdAsync(id))
+                    );
+            }
+            catch (Exception ex)
+            {
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                    );
             }
 
-            return Character;
         }
+
+        // GET: api/v1/Characters/1
+        [HttpGet("Movies/{id}")]
+        public async Task<ActionResult<IEnumerable<MovieDto>>> GetCharacterMovies(int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<MovieDto>(
+                       await _characterService.GetCharacterMoviesAsync(id))
+                   );
+            }
+            catch (Exception ex)
+            {
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                );
+            }
+        }
+
 
         // PUT: api/v1/Characters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

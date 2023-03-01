@@ -8,7 +8,8 @@ namespace MagicTord_N_SondreTheWebAPI.Models
         public DBContext()
         { }
         public DBContext(DbContextOptions<DBContext> options) : base(options)
-        {}
+        {
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MagicTord_N_SondreTheWebAPI.Models;
+using MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises;
+using MagicTord_N_SondreTheWebAPI.Services.Franchises;
+using AutoMapper;
+using MagicTord_N_SondreTheWebAPI.Services.Characters;
 
 namespace MagicTord_N_SondreTheWebAPI.Controllers
 {
@@ -14,17 +18,25 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
     public class FranchisesController : ControllerBase
     {
         private readonly DBContext _context;
+        private readonly IMapper _mapper;
+        private readonly IFranchiseService _franchiseService;
 
-        public FranchisesController(DBContext context)
+        public FranchisesController(IMapper mapper, DBContext context, IFranchiseService franchiseService)
         {
             _context = context;
+            _franchiseService = franchiseService;
+            _mapper = mapper;
+
         }
 
         // GET: api/v1/Franchises
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Franchise>>> GetFranchise()
+        public async Task<ActionResult<IEnumerable<Franchise>>> GetFranchises()
         {
-            return await _context.Franchises.ToListAsync();
+            return Ok(
+                _mapper.Map<List<FranchiseDto>>(
+                    await _franchiseService.GetAllAsync())
+                );
         }
 
         // GET: api/v1/Franchises/1

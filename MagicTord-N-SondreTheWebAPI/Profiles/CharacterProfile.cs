@@ -5,6 +5,8 @@ using System.Linq;
 
 using AutoMapper;
 using MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace MagicTord_N_SondreTheWebAPI.Profiles
 {
@@ -15,9 +17,8 @@ namespace MagicTord_N_SondreTheWebAPI.Profiles
 
             CreateMap<CharacterPostDto, Character>();
 
-            CreateMap<Movie, MovieDto>();
             CreateMap<Character, CharacterDto>()
-                .ForMember(dto => dto.Movies, opt => opt.MapFrom(p => p.Movies.ProjectTo<MovieDto>(mapper.ConfigurationProvider).ToList()));
+                .ForMember(dto => dto.Movies, opt => opt.MapFrom(src => src.Movies));
 
         }
 
