@@ -4,6 +4,12 @@ namespace MagicTord_N_SondreTheWebAPI.Models
 {
     public class Franchise
     {
+
+        public Franchise()
+        {
+            Movies = new HashSet<Movie>();
+        }
+
         [Key]
         public int FranchiseID { get; set; }
 
@@ -14,6 +20,6 @@ namespace MagicTord_N_SondreTheWebAPI.Models
         public string Description { get; set; } = null!;
 
         [Required]
-        public virtual ICollection<Movie> Movies { get; set; } = new HashSet<Movie>();
+        public virtual ICollection<Movie> Movies { get; set; } = null!;
     }
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MagicTord-N-SondreTheWebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Migrations.MigrationName">
+            <inheritdoc />
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Migrations.MigrationName.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Migrations.MigrationName.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Migrations.MigrationName.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises.FranchiseDto">
+            <summary>
+            We don't need to have any other dto's for put because we use the same values
+            </summary>
+        </member>
+    </members>
+</doc>

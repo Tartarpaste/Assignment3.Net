@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj": {}
+    "C:\\Users\\TVetle\\Documents\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj": {
+    "C:\\Users\\TVetle\\Documents\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\TVetle\\Documents\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj",
         "projectName": "MagicTord-N-SondreTheWebAPI",
-        "projectPath": "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj",
-        "packagesPath": "C:\\Users\\SReinh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SReinh\\source\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\obj\\",
+        "projectPath": "C:\\Users\\TVetle\\Documents\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj",
+        "packagesPath": "C:\\Users\\TVetle\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\TVetle\\Documents\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\SReinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\TVetle\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -44,6 +44,14 @@
               "target": "Package",
               "version": "[12.0.0, )"
             },
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[6.0.14, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.3, )"
@@ -63,6 +71,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.3, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.12, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
