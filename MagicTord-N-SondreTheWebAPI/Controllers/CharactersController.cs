@@ -22,71 +22,88 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
         private readonly DBContext _context;
         private readonly IMapper _mapper;
         private readonly ICharacterService _characterService;
-
+        
         public CharacterController(IMapper mapper, DBContext context, ICharacterService characterService)
         {
             _context = context;
             _characterService = characterService;
             _mapper = mapper;   
-
+            
         }
-
-        // GET: api/v1/Characters
+        
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
+        public async Task<ActionResult<IEnumerable<CharacterDto>>> GetCharacters()
         {
             return Ok(
                 _mapper.Map<List<CharacterDto>>(
                     await _characterService.GetAllAsync())
                 );
         }
-
-
+        
+        
         // GET: api/v1/Characters/1
         [HttpGet("{id}")]
-        public async Task<ActionResult<Character>> GetCharacter(int id)
+        public async Task<ActionResult<CharacterDto>> GetCharacter(int id)
         {
-            var Character = await _context.Characters.FindAsync(id);
-
-            if (Character == null)
+            try
             {
-                return NotFound();
+                return Ok(_mapper.Map<CharacterDto>(
+                        await _characterService.GetByIdAsync(id))
+                    );
             }
-
-            return Character;
+            catch (Exception ex)
+            {
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                    );
+            }
+            
         }
 
         // PUT: api/v1/Characters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCharacter(int id, Character Character)
+        public async Task<IActionResult> PutCharacter(int id, CharacterPutDto character)
         {
-            if (id != Character.CharacterID)
+            Character updatedcharacter = new Character
             {
-                return BadRequest();
-            }
+                CharacterID = character.CharacterID,
+                FullName = character.FullName,
+                Alias = character.Alias,
+                Gender = character.Gender,
+                PictureURL = character.PictureURL,
+                Movies = null,
+            };
 
-            _context.Entry(Character).State = EntityState.Modified;
+            if (id != character.CharacterID)
+                return BadRequest();
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _characterService.UpdateAsync(
+                        _mapper.Map<Character>(updatedcharacter)
+                    );
+                return NoContent();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!CharacterExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                    );
             }
-
-            return NoContent();
         }
-
         // POST: api/v1/Characters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -94,31 +111,38 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
         {
             _context.Characters.Add(Character);
             await _context.SaveChangesAsync();
-
+            
             return CreatedAtAction("GetCharacter", new { id = Character.CharacterID }, Character);
         }
-
-        // DELETE: api/v1/Characters/1
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCharacter(int id)
         {
-            var Character = await _context.Characters.FindAsync(id);
-            if (Character == null)
+            try
             {
-                return NotFound();
+                await _characterService.DeleteAsync(id);
+                return NoContent();
             }
-
-            _context.Characters.Remove(Character);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                    );
+            }
         }
-
+        
+        
         private bool CharacterExists(int id)
         {
             return _context.Characters.Any(e => e.CharacterID == id);
         }
-
+        
         [HttpGet("{id}/movies")]
         public async Task<ActionResult<IEnumerable<MovieDto>>> GetMoviesForCharactersAsync(int id)
         {

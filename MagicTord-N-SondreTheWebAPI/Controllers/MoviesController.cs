@@ -70,32 +70,44 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
         // PUT: api/Movies/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMovie(int id, Movie movie)
+        public async Task<IActionResult> PutMovieAsync(int id, MoviePutDto movie)
         {
-            if (id != movie.MovieID)
-            {
-                return BadRequest();
-            }
+            Movie updatedMovie = new Movie 
+            { 
+            MovieID = movie.MovieID,
+            MovieTitle =  movie.MovieTitle,
+            Genre = movie.Genre,
+            ReleaseYear= movie.ReleaseYear, 
+            Director= movie.Director,
+            PictureURL= movie.PictureURL,   
+            TrailerURL= movie.TrailerURL,
+            FranchiseID= movie.FranchiseID,
+            Characters = null
+            };
 
-            _context.Entry(movie).State = EntityState.Modified;
+            if (id != movie.MovieID)
+                return BadRequest();
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _movieService.UpdateAsync(
+                        _mapper.Map<Movie>(updatedMovie)
+                    );
+                return NoContent();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!MovieExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                    );
             }
 
-            return NoContent();
         }
 
         // POST: api/Movies
