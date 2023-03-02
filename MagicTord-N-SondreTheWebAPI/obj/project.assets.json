@@ -11349,19 +11349,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\SReinh\\.nuget\\packages\\": {}
+    "C:\\Users\\TVetle\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SReinh\\Source\\Repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\TVetle\\Documents\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj",
       "projectName": "MagicTord-N-SondreTheWebAPI",
-      "projectPath": "C:\\Users\\SReinh\\Source\\Repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj",
-      "packagesPath": "C:\\Users\\SReinh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SReinh\\Source\\Repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\obj\\",
+      "projectPath": "C:\\Users\\TVetle\\Documents\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj",
+      "packagesPath": "C:\\Users\\TVetle\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\TVetle\\Documents\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\SReinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\TVetle\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
