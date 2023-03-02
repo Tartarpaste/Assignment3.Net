@@ -1,4 +1,8 @@
 using MagicTord_N_SondreTheWebAPI.Models;
+using MagicTord_N_SondreTheWebAPI.Services;
+using MagicTord_N_SondreTheWebAPI.Services.Characters;
+using MagicTord_N_SondreTheWebAPI.Services.Franchises;
+using MagicTord_N_SondreTheWebAPI.Services.Movies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -27,6 +31,7 @@ builder.Services.AddSwaggerGen(options =>
         Title = "THE NCU API",
         Description = "Simple API to manage movie franchises and characters",
     });
+    options.DocumentFilter<SchemaFilter>();
     options.IncludeXmlComments(xmlPath);
 });
 
@@ -46,8 +51,10 @@ builder.Host.ConfigureLogging(logging =>
     logging.AddConsole();
 });
 
-/* Custom Services
-builder.Services.AddTransient<IProfessorService, ProfessorServiceImpl>(); // Transient is the default behaviour and means a new instance is made when injected.*/
+// Transient is the default behaviour and means a new instance is made when injected.*/
+builder.Services.AddTransient<ICharacterService, CharacterServiceImpl>();
+builder.Services.AddTransient<IMovieService, MovieServiceImpl>();
+builder.Services.AddTransient<IFranchiseService, FranchiseServiceImpl>();
 
 var app = builder.Build();
 

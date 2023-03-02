@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MagicTord-N-SondreTheWebAPI.props" />
+</Project>

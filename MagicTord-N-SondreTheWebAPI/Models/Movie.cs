@@ -1,9 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace MagicTord_N_SondreTheWebAPI.Models
 {
     public class Movie
     {
+        public Movie()
+        {
+            Characters = new HashSet<Character>();
+        }
+
         [Key]
         public int MovieID { get; set; }
 
@@ -13,7 +19,7 @@ namespace MagicTord_N_SondreTheWebAPI.Models
         [Required, StringLength(30)]
         public string Genre { get; set; } = null!;
 
-        [Required, StringLength(5)]
+        [Required, StringLength(6)]
         public string ReleaseYear { get; set; } = null!;
 
         [Required, StringLength(50)]
@@ -29,6 +35,6 @@ namespace MagicTord_N_SondreTheWebAPI.Models
         public int FranchiseID { get; set; }
 
         [Required]
-        public virtual ICollection<Character> Characters { get; set; } = new HashSet<Character>();
+        public virtual ICollection<Character> Characters { get; set; } = null!;
     }
 }
