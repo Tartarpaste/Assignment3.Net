@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using MagicTord_N_SondreTheWebAPI.Models;
 using MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises;
 using MagicTord_N_SondreTheWebAPI.Services.Franchises;
 using AutoMapper;
-using MagicTord_N_SondreTheWebAPI.Services.Characters;
-using MagicTord_N_SondreTheWebAPI.Services.Movies;
 using System.Net;
 
 namespace MagicTord_N_SondreTheWebAPI.Controllers
@@ -33,7 +25,7 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
 
         // GET: api/v1/Franchises
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Franchise>>> GetFranchises()
+        public async Task<ActionResult<IEnumerable<FranchiseDto>>> GetFranchises()
         {
             return Ok(
                 _mapper.Map<List<FranchiseDto>>(
@@ -43,16 +35,26 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
 
         // GET: api/v1/Franchises/1
         [HttpGet("{id}")]
-        public async Task<ActionResult<Franchise>> GetFranchise(int id)
+        public async Task<ActionResult<FranchiseDto>> GetFranchise(int id)
         {
-            var franchise = await _context.Franchises.FindAsync(id);
-
-            if (franchise == null)
+            try
             {
-                return NotFound();
+                return Ok(_mapper.Map<FranchiseDto>(
+                        await _franchiseService.GetByIdAsync(id))
+                    );
             }
-
-            return franchise;
+            catch (Exception ex)
+            {
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                    );
+            }
         }
 
         // PUT: api/v1/Franchises/5
@@ -118,11 +120,6 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
-
-        private bool FranchiseExists(int id)
-        {
-            return _context.Franchises.Any(e => e.FranchiseID == id);
         }
     }
 }

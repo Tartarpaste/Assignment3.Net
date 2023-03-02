@@ -2,6 +2,7 @@
 
 namespace MagicTord_N_SondreTheWebAPI.Models
 {
+    
     public class Character
     {
 
