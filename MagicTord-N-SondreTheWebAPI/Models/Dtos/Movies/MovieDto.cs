@@ -1,5 +1,7 @@
 ﻿namespace MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies
 {
+
+
     public class MovieDto
     {
         public int MovieID { get; set; }
