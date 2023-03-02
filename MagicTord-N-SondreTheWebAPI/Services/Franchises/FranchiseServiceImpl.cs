@@ -20,7 +20,6 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Franchises
         {
             await _dBContext.AddAsync(entity);
             await _dBContext.SaveChangesAsync();
-
         }
 
         public async Task DeleteAsync(int id)

@@ -137,13 +137,8 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             return NoContent();
         }
 
-        private bool MovieExists(int id)
-        {
-            return _context.Movies.Any(e => e.MovieID == id);
-        }
 
-
-        [HttpGet("{id}/characters")]
+        [HttpGet("Characters/{id}")]
         public async Task<ActionResult<IEnumerable<CharacterDto>>> GetCharactersForMovieAsync(int id)
         {
             try

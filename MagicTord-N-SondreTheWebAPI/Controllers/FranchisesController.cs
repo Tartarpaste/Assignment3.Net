@@ -1,4 +1,5 @@
-﻿using MagicTord_N_SondreTheWebAPI.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using MagicTord_N_SondreTheWebAPI.Models;
 using MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises;
 using MagicTord_N_SondreTheWebAPI.Services.Franchises;
 using AutoMapper;
@@ -108,10 +109,6 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             _context.Franchises.Remove(franchise);
             await _context.SaveChangesAsync();
             return NoContent();
-        }
-        private bool FranchiseExists(int id)
-        {
-            return _context.Franchises.Any(e => e.FranchiseID == id);
         }
     }
 }

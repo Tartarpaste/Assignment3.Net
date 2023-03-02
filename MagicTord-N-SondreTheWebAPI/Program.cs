@@ -1,4 +1,5 @@
 using MagicTord_N_SondreTheWebAPI.Models;
+using MagicTord_N_SondreTheWebAPI.Services;
 using MagicTord_N_SondreTheWebAPI.Services.Characters;
 using MagicTord_N_SondreTheWebAPI.Services.Franchises;
 using MagicTord_N_SondreTheWebAPI.Services.Movies;
@@ -30,6 +31,7 @@ builder.Services.AddSwaggerGen(options =>
         Title = "THE NCU API",
         Description = "Simple API to manage movie franchises and characters",
     });
+    options.DocumentFilter<SchemaFilter>();
     options.IncludeXmlComments(xmlPath);
 });
 

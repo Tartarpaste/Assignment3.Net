@@ -33,5 +33,10 @@
             We don't need to have any other dto's for put because we use the same values
             </summary>
         </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Services.SchemaFilter">
+            <summary>
+            SchemaFilter to filter out classes in swaggers schemas
+            </summary>
+        </member>
     </members>
 </doc>

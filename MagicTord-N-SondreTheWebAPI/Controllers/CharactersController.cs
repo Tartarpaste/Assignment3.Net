@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using MagicTord_N_SondreTheWebAPI.Models;
 using MagicTord_N_SondreTheWebAPI.Models.Dtos.Characters;
 using AutoMapper;
 using MagicTord_N_SondreTheWebAPI.Services.Characters;
-using MagicTord_N_SondreTheWebAPI.Services.Movies;
 using System.Net;
 using MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies;
 
@@ -30,7 +23,7 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             _mapper = mapper;   
             
         }
-
+        // GET: api/v1/Characters
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CharacterDto>>> GetCharacters()
         {
@@ -62,7 +55,6 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
                     }
                     );
             }
-
         }
 
         // PUT: api/v1/Characters/5
@@ -106,13 +98,15 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
         // POST: api/v1/Characters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<CharacterDto>> PostCharacter(Character Character)
+        public async Task<ActionResult> PostCharacter(CharacterPostDto CharacterDTO)
         {
+            Character Character = _mapper.Map<Character>(CharacterDTO);
             _context.Characters.Add(Character);
             await _context.SaveChangesAsync();
-            
+
             return CreatedAtAction("GetCharacter", new { id = Character.CharacterID }, Character);
         }
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCharacter(int id)
@@ -136,14 +130,8 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
                     );
             }
         }
-
-
-        private bool CharacterExists(int id)
-        {
-            return _context.Characters.Any(e => e.CharacterID == id);
-        }
         
-        [HttpGet("{id}/movies")]
+        [HttpGet("Movies/{id}")]
         public async Task<ActionResult<IEnumerable<MovieDto>>> GetMoviesForCharactersAsync(int id)
         {
             try
