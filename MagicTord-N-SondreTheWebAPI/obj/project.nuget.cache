@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ef6QcrHAFedFwNhR2GZvvu7e6cuCiEKRMc9UZ31Q/4gHyeJVWfHcUAEFfsiQj0eQa43Fb5em+eK9mmS2LKpbMA==",
+  "dgSpecHash": "8LbyTpj+dEIzIjyVpXWJDSTUCHr47epeZgb/2CH3LcofTCbL1SYBOzI6SYInm7hrdeatvQJL3rNwxCILZIkk5Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\TVetle\\Documents\\repos\\Assignment3.Net\\MagicTord-N-SondreTheWebAPI\\MagicTord-N-SondreTheWebAPI.csproj",
   "expectedPackageFiles": [
@@ -115,8 +115,9 @@
     "C:\\Users\\TVetle\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\TVetle\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\TVetle\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
-    "C:\\Users\\TVetle\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
-    "C:\\Users\\TVetle\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\TVetle\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\6.5.0\\swashbuckle.aspnetcore.annotations.6.5.0.nupkg.sha512",
+    "C:\\Users\\TVetle\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\TVetle\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\TVetle\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
     "C:\\Users\\TVetle\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\TVetle\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",

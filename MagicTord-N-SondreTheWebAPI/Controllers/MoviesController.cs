@@ -34,7 +34,7 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
 
         // GET: api/Movies
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Movie>>> GetMovies()
+        public async Task<ActionResult<IEnumerable<MovieDto>>> GetMovies()
         {
             return Ok(
                 _mapper.Map<List<MovieDto>>(
@@ -44,7 +44,7 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
 
         // GET: api/Movies/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Movie>> GetMovie(int id)
+        public async Task<ActionResult<MovieDto>> GetMovie(int id)
         {
             try
             {
