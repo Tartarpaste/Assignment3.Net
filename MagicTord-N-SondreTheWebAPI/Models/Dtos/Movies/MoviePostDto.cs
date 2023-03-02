@@ -9,6 +9,5 @@
         public string PictureURL { get; set; } = null!;
         public string TrailerURL { get; set; } = null!;
         public int FranchiseID { get; set; }
-        public virtual List<Character> Characters { get; set; } = null!;
     }
 }
