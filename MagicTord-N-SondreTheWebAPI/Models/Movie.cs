@@ -19,7 +19,7 @@ namespace MagicTord_N_SondreTheWebAPI.Models
         [Required, StringLength(30)]
         public string Genre { get; set; } = null!;
 
-        [Required, StringLength(5)]
+        [Required, StringLength(6)]
         public string ReleaseYear { get; set; } = null!;
 
         [Required, StringLength(50)]
