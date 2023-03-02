@@ -12,7 +12,8 @@ namespace MagicTord_N_SondreTheWebAPI.Profiles
             CreateMap<MoviePostDto, Movie>();
 
             CreateMap<Movie, MovieDto>()
-                    .ForMember(dto => dto.Characters, opt => opt.MapFrom(src => src.Characters));
+                    .ForMember(dto => dto.Characters, opt => opt
+                    .MapFrom(src => src.Characters));
         }
     }
 }

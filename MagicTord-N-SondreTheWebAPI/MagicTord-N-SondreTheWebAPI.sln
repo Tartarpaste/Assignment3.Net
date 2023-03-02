@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicTord-N-SondreTheWebAPI", "..\MagicTord-N-SondreTheWebAPI\MagicTord-N-SondreTheWebAPI.csproj", "{95A43D17-3448-47DF-91B2-2AB13B7A7BA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicTord-N-SondreTheWebAPI", "MagicTord-N-SondreTheWebAPI.csproj", "{3F42A40F-D85C-4683-81F7-2D85F5DED8C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{95A43D17-3448-47DF-91B2-2AB13B7A7BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95A43D17-3448-47DF-91B2-2AB13B7A7BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95A43D17-3448-47DF-91B2-2AB13B7A7BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95A43D17-3448-47DF-91B2-2AB13B7A7BA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F42A40F-D85C-4683-81F7-2D85F5DED8C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F42A40F-D85C-4683-81F7-2D85F5DED8C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F42A40F-D85C-4683-81F7-2D85F5DED8C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F42A40F-D85C-4683-81F7-2D85F5DED8C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {DCC5CBCF-3644-4427-919A-7BA88A7A8FA9}
+		SolutionGuid = {07CDF1FA-31AA-4163-971D-BA4853BD867D}
 	EndGlobalSection
 EndGlobal

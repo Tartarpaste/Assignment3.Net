@@ -5,23 +5,23 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Characters
 {
     public class CharacterServiceImpl : ICharacterService
     {
-
+        
         private readonly DBContext _dBContext;
         private readonly ILogger<CharacterServiceImpl> _logger;
-
+        
         public CharacterServiceImpl(DBContext dBContext, ILogger<CharacterServiceImpl> logger)
         {
             _dBContext = dBContext;
             _logger = logger;
         }
-
+        
         public async Task AddAsync(Character entity)
         {
             await _dBContext.AddAsync(entity);
             await _dBContext.SaveChangesAsync();
-            
-        }
 
+        }
+        
         public async Task DeleteAsync(int id)
         {
             var character = await _dBContext.Characters.FindAsync(id);
@@ -78,7 +78,7 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Characters
                 })
                 .ToListAsync();
         }
-
+        
         public async Task<Character> GetByIdAsync(int id)
         {
             return await _dBContext.Characters
@@ -120,18 +120,18 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Characters
                     .Where(cm => cm.CharacterID == characterID)
                     .Select(cm => cm.MovieID)
                     .Contains(m.MovieID));
-
+            
             return await query.ToListAsync();
-
+            
         }
-
+        
         public async Task UpdateAsync(Character entity)
         {
             _dBContext.Entry(entity).State = EntityState.Modified;
             await _dBContext.SaveChangesAsync();
-
+            
         }
-
+        
         public async Task UpdateCharacterMoviesAsync(HashSet<Movie> movieIDS, int characterID)
         {
             Character character = await _dBContext.Characters
@@ -142,8 +142,7 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Characters
             _dBContext.Entry(character).State = EntityState.Modified;
             // Save all the changes
             await _dBContext.SaveChangesAsync();
-
+            
         }
-
     }
 }

@@ -10,6 +10,8 @@ using MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises;
 using MagicTord_N_SondreTheWebAPI.Services.Franchises;
 using AutoMapper;
 using MagicTord_N_SondreTheWebAPI.Services.Characters;
+using MagicTord_N_SondreTheWebAPI.Services.Movies;
+using System.Net;
 
 namespace MagicTord_N_SondreTheWebAPI.Controllers
 {
@@ -56,32 +58,38 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
         // PUT: api/v1/Franchises/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFranchise(int id, Franchise franchise)
+        public async Task<IActionResult> PutFranchise(int id, FranchisePutDto franchise)
         {
-            if (id != franchise.FranchiseID)
+            Franchise updatedFranchise = new Franchise
             {
-                return BadRequest();
-            }
+                FranchiseID = franchise.FranchiseID,
+                Name = franchise.Name,
+                Description = franchise.Description,
+                Movies = null,
+            };
 
-            _context.Entry(franchise).State = EntityState.Modified;
+            if (id != franchise.FranchiseID)
+                return BadRequest();
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _franchiseService.UpdateAsync(
+                        _mapper.Map<Franchise>(updatedFranchise)
+                    );
+                return NoContent();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!FranchiseExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                    );
             }
-
-            return NoContent();
         }
 
         // POST: api/v1/Franchises
