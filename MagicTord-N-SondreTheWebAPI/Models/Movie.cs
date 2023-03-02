@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace MagicTord_N_SondreTheWebAPI.Models
 {
     public class Movie
     {
-
         public Movie()
         {
             Characters = new HashSet<Character>();
