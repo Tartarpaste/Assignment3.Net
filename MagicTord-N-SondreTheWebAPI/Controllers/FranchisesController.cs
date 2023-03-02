@@ -87,8 +87,9 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
         // POST: api/v1/Franchises
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Franchise>> PostFranchise(Franchise franchise)
+        public async Task<ActionResult> PostFranchise(FranchisePostDto franchiseDTO)
         {
+            Franchise franchise = _mapper.Map<Franchise>(franchiseDTO);
             _context.Franchises.Add(franchise);
             await _context.SaveChangesAsync();
 
