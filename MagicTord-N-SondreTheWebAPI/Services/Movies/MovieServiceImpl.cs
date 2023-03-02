@@ -144,16 +144,15 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Movies
 
         }
 
-        public async Task UpdateMovieCharactersAsync(HashSet<Character> characterIDS, int movieID)
+        public async Task UpdateMovieCharactersAsync(int[] characterIds, int movieId)
         {
-            Movie movie = await _dBContext.Movies
-                .Where(p => p.MovieID == movieID)
-                .FirstAsync();
-            // Set the characters movies
-            movie.Characters = characterIDS;
-            _dBContext.Entry(movie).State = EntityState.Modified;
-            // Save all the changes
+            List<CharacterMovie> charactersToUpdate = characterIds.Select(characterId => new CharacterMovie { CharacterID = characterId, MovieID = movieId }).ToList();
+            
+            _dBContext.CharacterMovies.AddRange(charactersToUpdate);
             await _dBContext.SaveChangesAsync();
+
+
+
 
         }
     }

@@ -1,5 +1,6 @@
 ﻿using MagicTord_N_SondreTheWebAPI.Models;
 using MagicTord_N_SondreTheWebAPI.Services.Characters;
+using MagicTord_N_SondreTheWebAPI.Services.Movies;
 using Microsoft.EntityFrameworkCore;
 
 namespace MagicTord_N_SondreTheWebAPI.Services.Franchises
@@ -85,18 +86,20 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Franchises
         {
             _dBContext.Entry(entity).State = EntityState.Modified;
             await _dBContext.SaveChangesAsync();
-
         }
 
-        public async Task UpdateFranchiseMoviesAsync(HashSet<Movie> movieIDS, int franchiseID)
+        public async Task UpdateFranchiseMoviesAsync(int[] movieIds, int franchiseId)
         {
-            Franchise franchise = await _dBContext.Franchises
-                .Where(p => p.FranchiseID == franchiseID)
-                .FirstAsync();
-            // Set the franchise movies
-            franchise.Movies = movieIDS;
-            _dBContext.Entry(franchise).State = EntityState.Modified;
-            // Save all the changes
+
+            List<Movie> moviesToUpdate = await _dBContext.Movies
+            .Where(m => movieIds.Contains(m.MovieID))
+            .ToListAsync();
+
+            foreach (Movie movie in moviesToUpdate)
+            {
+                movie.FranchiseID = franchiseId;
+            }
+
             await _dBContext.SaveChangesAsync();
 
         }

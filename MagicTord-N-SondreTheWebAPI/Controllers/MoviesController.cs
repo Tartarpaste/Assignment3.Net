@@ -137,6 +137,28 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}/characters")]
+        public async Task<IActionResult> UpdateCharactersForMovieAsync(int[] characterIds, int movieId)
+        {
+            try
+            {
+                await _movieService.UpdateMovieCharactersAsync(characterIds,movieId);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                    );
+            }
+        }
+
 
         [HttpGet("Characters/{id}")]
         public async Task<ActionResult<IEnumerable<CharacterDto>>> GetCharactersForMovieAsync(int id)

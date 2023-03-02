@@ -7,6 +7,6 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Franchises
         Task<ICollection<Movie>> GetFranchiseMoviesAsync(int FranchiseId);
         Task<ICollection<Character>> GetFranchiseCharactersAsync(int FranchiseId);
 
-        Task UpdateFranchiseMoviesAsync(HashSet<Movie> movieIDS, int FranchiseId);
+        Task UpdateFranchiseMoviesAsync(int[] movieIdS, int FranchiseId);
     }
 }

@@ -151,6 +151,29 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             }
         }
 
+        [HttpPut("{id}/movies")]
+        public async Task<IActionResult> UpdateMoviesForFranchiseAsync(int[] movieIds, int franchiseId)
+        {
+            try
+            {
+                await _franchiseService.UpdateFranchiseMoviesAsync(movieIds, franchiseId);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                    );
+            }
+        }
+
+
         // DELETE: api/v1/Franchises/1
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFranchise(int id)

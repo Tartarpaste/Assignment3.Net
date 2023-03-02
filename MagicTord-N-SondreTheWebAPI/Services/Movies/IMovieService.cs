@@ -6,6 +6,6 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Movies
     {
         Task<ICollection<Character>> GetMovieCharactersAsync(int MovieId);
 
-        Task UpdateMovieCharactersAsync(HashSet<Character> characterIDS, int MovieId);
+        Task UpdateMovieCharactersAsync(int[] characterIds, int MovieId);
     }
 }
