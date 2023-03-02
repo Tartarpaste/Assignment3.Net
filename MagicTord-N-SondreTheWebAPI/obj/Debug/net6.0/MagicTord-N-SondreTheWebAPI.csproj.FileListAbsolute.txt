@@ -610,4 +610,4 @@ C:\Users\SReinh\source\repos\Assignment3.Net\MagicTord-N-SondreTheWebAPI\bin\Deb
 C:\Users\SReinh\source\repos\Assignment3.Net\MagicTord-N-SondreTheWebAPI\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
 C:\Users\SReinh\source\repos\Assignment3.Net\MagicTord-N-SondreTheWebAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\SReinh\source\repos\Assignment3.Net\MagicTord-N-SondreTheWebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\TVetle\Documents\repos\Assignment3.Net\MagicTord-N-SondreTheWebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\SReinh\Source\Repos\Assignment3.Net\MagicTord-N-SondreTheWebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll

@@ -63,12 +63,21 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Franchises
 
         }
 
+        public async Task<ICollection<Character>> GetFranchiseCharactersAsync(int franchiseID)
+        {
+            return await _dBContext.Movies
+                 .Where(p => p.FranchiseID == franchiseID)
+                 .SelectMany(p => p.Characters)
+                 .ToListAsync();
+                    
+        }
+
         public async Task<ICollection<Movie>> GetFranchiseMoviesAsync(int franchiseID)
         {
             return await _dBContext.Franchises
                  .Where(p => p.FranchiseID == franchiseID)
-                 .Select(p => p.Movies)
-                 .FirstAsync();
+                 .SelectMany(p => p.Movies)
+                 .ToListAsync();
 
         }
 

@@ -4,7 +4,9 @@ using MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises;
 using MagicTord_N_SondreTheWebAPI.Services.Franchises;
 using AutoMapper;
 using System.Net;
-using Microsoft.AspNetCore.Mvc;
+using MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies;
+using MagicTord_N_SondreTheWebAPI.Services.Characters;
+using MagicTord_N_SondreTheWebAPI.Models.Dtos.Characters;
 
 namespace MagicTord_N_SondreTheWebAPI.Controllers
 {
@@ -97,6 +99,58 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetFranchise", new { id = franchise.FranchiseID }, franchise);
         }
+
+
+        [HttpGet("Movies/{id}")]
+        public async Task<ActionResult<IEnumerable<MovieDto>>> GetMoviesForFranchiseAsync(int id)
+        {
+            try
+            {
+                return Ok(
+                _mapper.Map<List<MovieDto>>(
+                            await _franchiseService.GetFranchiseMoviesAsync(id)
+                        )
+                    );
+            }
+            catch (Exception ex)
+            {
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                    );
+            }
+        }
+
+        [HttpGet("Characters/{id}")]
+        public async Task<ActionResult<IEnumerable<CharacterDto>>> GetCharactersForFranchiseAsync(int id)
+        {
+            try
+            {
+                return Ok(
+                _mapper.Map<List<CharacterDto>>(
+                            await _franchiseService.GetFranchiseCharactersAsync(id)
+                        )
+                    );
+            }
+            catch (Exception ex)
+            {
+                // Formatting an error code for the exception messages.
+                // Using the built in Problem Details.
+                return NotFound(
+                    new ProblemDetails()
+                    {
+                        Detail = ex.Message,
+                        Status = ((int)HttpStatusCode.NotFound)
+                    }
+                    );
+            }
+        }
+
         // DELETE: api/v1/Franchises/1
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFranchise(int id)
