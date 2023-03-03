@@ -2,7 +2,7 @@
 
 #### MagicTord-N-SondreTheWebAPI
 
-This repo contains a web application that generates a local database that can be manipulated by controllers. The logic of the repo represents characters that play in movies and franchises that these movies are a part of. A user can with swagger manipulate the locally generated database with general CRUD and some custom methods for the different database tables.
+This repo contains a web application that generates a local database that can be manipulated by controllers. The content of the repo represents characters that play in movies and franchises that these movies are a part of. A user can with swagger manipulate the locally generated database with general CRUD and some custom methods for the different database tables.
 
 ---
 
