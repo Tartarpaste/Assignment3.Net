@@ -8,6 +8,10 @@ using MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies;
 
 namespace MagicTord_N_SondreTheWebAPI.Controllers
 {
+
+    /// <summary>
+    /// The controller class for the character table in the database.
+    /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
     public class CharacterController : ControllerBase
@@ -16,6 +20,12 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
         private readonly IMapper _mapper;
         private readonly ICharacterService _characterService;
         
+        /// <summary>
+        /// Constructor for the CharactersController class
+        /// </summary>
+        /// <param name="mapper"></param>
+        /// <param name="context"></param>
+        /// <param name="characterService"></param>
         public CharacterController(IMapper mapper, DBContext context, ICharacterService characterService)
         {
             _context = context;
@@ -23,7 +33,11 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             _mapper = mapper;   
             
         }
-        // GET: api/v1/Characters
+
+        /// <summary>
+        /// Gets all characters from the database
+        /// </summary>
+        /// <returns>A list of characters</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CharacterDto>>> GetCharacters()
         {
@@ -33,7 +47,11 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
                 );
         }
 
-        // GET: api/v1/Characters/1
+        /// <summary>
+        /// Gets a single character by id from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A character</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<CharacterDto>> GetCharacter(int id)
         {
@@ -57,8 +75,11 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             }
         }
 
-        // PUT: api/v1/Characters/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Updates a character in the database with new values
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="character"></param>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCharacter(int id, CharacterPutDto character)
         {
@@ -69,7 +90,7 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
                 Alias = character.Alias,
                 Gender = character.Gender,
                 PictureURL = character.PictureURL,
-                Movies = null,
+                Movies = null!,
             };
 
             if (id != character.CharacterID)
@@ -84,8 +105,6 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             }
             catch (Exception ex)
             {
-                // Formatting an error code for the exception messages.
-                // Using the built in Problem Details.
                 return NotFound(
                     new ProblemDetails()
                     {
@@ -95,8 +114,11 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
                     );
             }
         }
-        // POST: api/v1/Characters
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
+        /// <summary>
+        /// Creates a new character in the database
+        /// </summary>
+        /// <param name="CharacterDTO"></param>
         [HttpPost]
         public async Task<ActionResult> PostCharacter(CharacterPostDto CharacterDTO)
         {
@@ -107,7 +129,10 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             return CreatedAtAction("GetCharacter", new { id = Character.CharacterID }, Character);
         }
 
-
+        /// <summary>
+        /// Deletes a character from the database
+        /// </summary>
+        /// <param name="id"></param>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCharacter(int id)
         {
@@ -119,8 +144,6 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             }
             catch (Exception ex)
             {
-                // Formatting an error code for the exception messages.
-                // Using the built in Problem Details.
                 return NotFound(
                     new ProblemDetails()
                     {
@@ -130,7 +153,12 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
                     );
             }
         }
-        
+
+        /// <summary>
+        /// Gets all movies a character plays in
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A list of movies</returns>
         [HttpGet("Movies/{id}")]
         public async Task<ActionResult<IEnumerable<MovieDto>>> GetMoviesForCharactersAsync(int id)
         {
@@ -144,8 +172,6 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             }
             catch (Exception ex)
             {
-                // Formatting an error code for the exception messages.
-                // Using the built in Problem Details.
                 return NotFound(
                     new ProblemDetails()
                     {

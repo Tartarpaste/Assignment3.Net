@@ -2,9 +2,16 @@
 
 namespace MagicTord_N_SondreTheWebAPI.Models
 {
+    /// <summary>
+    /// Model that reflects what the Franchise table holds in the database. 
+    /// This is also used to create table if the database does not exist to begin with.
+    /// </summary>
     public class Franchise
     {
 
+        /// <summary>
+        /// Constructor for the Franchise class
+        /// </summary>
         public Franchise()
         {
             Movies = new HashSet<Movie>();

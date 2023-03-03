@@ -1,14 +1,21 @@
 ﻿using MagicTord_N_SondreTheWebAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using System.IO;
 
 namespace MagicTord_N_SondreTheWebAPI.Services.Movies
 {
+    /// <summary>
+    /// Implementation class for the movie table in the database
+    /// </summary>
     public class MovieServiceImpl : IMovieService
     {
         private readonly DBContext _dBContext;
         private readonly ILogger<MovieServiceImpl> _logger;
 
+        /// <summary>
+        /// Constructor for the Movie implementation class
+        /// </summary>
+        /// <param name="dBContext"></param>
+        /// <param name="logger"></param>
         public MovieServiceImpl(DBContext dBContext, ILogger<MovieServiceImpl> logger)
         {
             _dBContext = dBContext;

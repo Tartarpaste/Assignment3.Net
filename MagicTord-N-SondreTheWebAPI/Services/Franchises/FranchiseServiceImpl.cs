@@ -1,16 +1,23 @@
 ﻿using MagicTord_N_SondreTheWebAPI.Models;
 using MagicTord_N_SondreTheWebAPI.Services.Characters;
-using MagicTord_N_SondreTheWebAPI.Services.Movies;
 using Microsoft.EntityFrameworkCore;
 
 namespace MagicTord_N_SondreTheWebAPI.Services.Franchises
 {
+    /// <summary>
+    /// Implementation class for the movie table in the database
+    /// </summary>
     public class FranchiseServiceImpl : IFranchiseService
     {
 
         private readonly DBContext _dBContext;
         private readonly ILogger<CharacterServiceImpl> _logger;
 
+        /// <summary>
+        /// Constructor for the Franchise implementation class
+        /// </summary>
+        /// <param name="dBContext"></param>
+        /// <param name="logger"></param>
         public FranchiseServiceImpl(DBContext dBContext, ILogger<CharacterServiceImpl> logger)
         {
             _dBContext = dBContext;
@@ -48,7 +55,7 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Franchises
         public async Task<ICollection<Franchise>> GetAllAsync()
         {
             return await _dBContext.Franchises
-                .Include(p => p.Movies)
+                .Include(f => f.Movies)
                 .ToListAsync();
 
         }
@@ -57,8 +64,8 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Franchises
         {
             //ADD null check
             return await _dBContext.Franchises
-                .Where(p => p.FranchiseID == id)
-                .Include(p => p.Movies)
+                .Where(f => f.FranchiseID == id)
+                .Include(f => f.Movies)
                 .FirstAsync();
 
 
@@ -67,8 +74,8 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Franchises
         public async Task<ICollection<Character>> GetFranchiseCharactersAsync(int franchiseID)
         {
             return await _dBContext.Movies
-                 .Where(p => p.FranchiseID == franchiseID)
-                 .SelectMany(p => p.Characters)
+                 .Where(f => f.FranchiseID == franchiseID)
+                 .SelectMany(f => f.Characters)
                  .ToListAsync();
                     
         }
@@ -76,8 +83,8 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Franchises
         public async Task<ICollection<Movie>> GetFranchiseMoviesAsync(int franchiseID)
         {
             return await _dBContext.Franchises
-                 .Where(p => p.FranchiseID == franchiseID)
-                 .SelectMany(p => p.Movies)
+                 .Where(f => f.FranchiseID == franchiseID)
+                 .SelectMany(f => f.Movies)
                  .ToListAsync();
 
         }

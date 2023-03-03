@@ -5,11 +5,13 @@ using MagicTord_N_SondreTheWebAPI.Services.Franchises;
 using AutoMapper;
 using System.Net;
 using MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies;
-using MagicTord_N_SondreTheWebAPI.Services.Characters;
 using MagicTord_N_SondreTheWebAPI.Models.Dtos.Characters;
 
 namespace MagicTord_N_SondreTheWebAPI.Controllers
 {
+    /// <summary>
+    /// The controller class for the franchise table in the database.
+    /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
     public class FranchisesController : ControllerBase
@@ -17,13 +19,24 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
         private readonly DBContext _context;
         private readonly IMapper _mapper;
         private readonly IFranchiseService _franchiseService;
+
+        /// <summary>
+        /// Constructor for the FranchisesController class
+        /// </summary>
+        /// <param name="mapper"></param>
+        /// <param name="context"></param>
+        /// <param name="franchiseService"></param>
         public FranchisesController(IMapper mapper, DBContext context, IFranchiseService franchiseService)
         {
             _context = context;
             _franchiseService = franchiseService;
             _mapper = mapper;
         }
-        // GET: api/v1/Franchises
+
+        /// <summary>
+        /// Gets all franchises from the database
+        /// </summary>
+        /// <returns>A list of franchises</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FranchiseDto>>> GetFranchises()
         {
@@ -32,7 +45,12 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
                     await _franchiseService.GetAllAsync())
                 );
         }
-        // GET: api/v1/Franchises/1
+
+        /// <summary>
+        /// Gets a franchise by id from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A franchise</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<FranchiseDto>> GetFranchise(int id)
         {
@@ -44,8 +62,6 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             }
             catch (Exception ex)
             {
-                // Formatting an error code for the exception messages.
-                // Using the built in Problem Details.
                 return NotFound(
                     new ProblemDetails()
                     {
@@ -55,8 +71,12 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
                     );
             }
         }
-        // PUT: api/v1/Franchises/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
+        /// <summary>
+        /// Updates a franchise in the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="franchise"></param>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFranchise(int id, FranchisePutDto franchise)
         {
@@ -78,8 +98,6 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             }
             catch (Exception ex)
             {
-                // Formatting an error code for the exception messages.
-                // Using the built in Problem Details.
                 return NotFound(
                     new ProblemDetails()
                     {
@@ -89,8 +107,11 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
                     );
             }
         }
-        // POST: api/v1/Franchises
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
+        /// <summary>
+        /// Creates a new franchise in the database
+        /// </summary>
+        /// <param name="franchiseDTO"></param>
         [HttpPost]
         public async Task<ActionResult> PostFranchise(FranchisePostDto franchiseDTO)
         {
@@ -100,7 +121,11 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             return CreatedAtAction("GetFranchise", new { id = franchise.FranchiseID }, franchise);
         }
 
-
+        /// <summary>
+        /// Gets all movies in a franchise from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A list of movies</returns>
         [HttpGet("Movies/{id}")]
         public async Task<ActionResult<IEnumerable<MovieDto>>> GetMoviesForFranchiseAsync(int id)
         {
@@ -114,8 +139,6 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             }
             catch (Exception ex)
             {
-                // Formatting an error code for the exception messages.
-                // Using the built in Problem Details.
                 return NotFound(
                     new ProblemDetails()
                     {
@@ -126,6 +149,11 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets all charactes in a franchise from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A list of characters</returns>
         [HttpGet("Characters/{id}")]
         public async Task<ActionResult<IEnumerable<CharacterDto>>> GetCharactersForFranchiseAsync(int id)
         {
@@ -139,8 +167,6 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             }
             catch (Exception ex)
             {
-                // Formatting an error code for the exception messages.
-                // Using the built in Problem Details.
                 return NotFound(
                     new ProblemDetails()
                     {
@@ -151,6 +177,11 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates what movies a franchise has in the database
+        /// </summary>
+        /// <param name="movieIds"></param>
+        /// <param name="franchiseId"></param>
         [HttpPut("{id}/movies")]
         public async Task<IActionResult> UpdateMoviesForFranchiseAsync(int[] movieIds, int franchiseId)
         {
@@ -161,8 +192,6 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             }
             catch (Exception ex)
             {
-                // Formatting an error code for the exception messages.
-                // Using the built in Problem Details.
                 return NotFound(
                     new ProblemDetails()
                     {
@@ -173,8 +202,10 @@ namespace MagicTord_N_SondreTheWebAPI.Controllers
             }
         }
 
-
-        // DELETE: api/v1/Franchises/1
+        /// <summary>
+        /// Deletes a franchise from the database
+        /// </summary>
+        /// <param name="id"></param>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFranchise(int id)
         {

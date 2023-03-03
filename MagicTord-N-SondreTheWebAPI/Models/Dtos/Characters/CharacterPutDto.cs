@@ -1,5 +1,8 @@
 ﻿namespace MagicTord_N_SondreTheWebAPI.Models.Dtos.Characters
 {
+    /// <summary>
+    /// DTO for updating a character in the database
+    /// </summary>
     public class CharacterPutDto
     {
         public int CharacterID { get; set; }

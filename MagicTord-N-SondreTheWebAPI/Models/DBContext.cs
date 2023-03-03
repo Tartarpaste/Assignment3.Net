@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MagicTord_N_SondreTheWebAPI.Models
 {
+    /// <summary>
+    /// The comntext file of the project. Ensures the creation of the database has the correct relations between tables
+    /// </summary>
     public class DBContext: DbContext
     {
         public DBContext() { }

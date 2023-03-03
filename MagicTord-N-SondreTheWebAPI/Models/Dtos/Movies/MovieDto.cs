@@ -1,7 +1,9 @@
 ﻿namespace MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies
 {
 
-
+    /// <summary>
+    /// The DTO for Movie, contains all related data.
+    /// </summary>
     public class MovieDto
     {
         public int MovieID { get; set; }

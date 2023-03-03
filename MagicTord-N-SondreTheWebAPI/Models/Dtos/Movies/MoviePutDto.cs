@@ -1,5 +1,8 @@
 ﻿namespace MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies
 {
+    /// <summary>
+    /// DTO for updating a movie in the database
+    /// </summary>
     public class MoviePutDto
     {
         public int MovieID { get; set; }

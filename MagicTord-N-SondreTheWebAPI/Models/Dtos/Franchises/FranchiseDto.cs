@@ -2,6 +2,9 @@
 
 namespace MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises
 {
+    /// <summary>
+    /// The DTO for Franchise, contains all related data.
+    /// </summary>
     public class FranchiseDto
     {
         public int FranchiseID { get; set; }

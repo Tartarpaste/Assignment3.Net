@@ -4,6 +4,184 @@
         <name>MagicTord-N-SondreTheWebAPI</name>
     </assembly>
     <members>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Controllers.CharacterController">
+            <summary>
+            The controller class for the character table in the database.
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.CharacterController.#ctor(AutoMapper.IMapper,MagicTord_N_SondreTheWebAPI.Models.DBContext,MagicTord_N_SondreTheWebAPI.Services.Characters.ICharacterService)">
+            <summary>
+            Constructor for the CharactersController class
+            </summary>
+            <param name="mapper"></param>
+            <param name="context"></param>
+            <param name="characterService"></param>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.CharacterController.GetCharacters">
+            <summary>
+            Gets all characters from the database
+            </summary>
+            <returns>A list of characters</returns>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.CharacterController.GetCharacter(System.Int32)">
+            <summary>
+            Gets a single character by id from the database
+            </summary>
+            <param name="id"></param>
+            <returns>A character</returns>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.CharacterController.PutCharacter(System.Int32,MagicTord_N_SondreTheWebAPI.Models.Dtos.Characters.CharacterPutDto)">
+            <summary>
+            Updates a character in the database with new values
+            </summary>
+            <param name="id"></param>
+            <param name="character"></param>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.CharacterController.PostCharacter(MagicTord_N_SondreTheWebAPI.Models.Dtos.Characters.CharacterPostDto)">
+            <summary>
+            Creates a new character in the database
+            </summary>
+            <param name="CharacterDTO"></param>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.CharacterController.DeleteCharacter(System.Int32)">
+            <summary>
+            Deletes a character from the database
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.CharacterController.GetMoviesForCharactersAsync(System.Int32)">
+            <summary>
+            Gets all movies a character plays in
+            </summary>
+            <param name="id"></param>
+            <returns>A list of movies</returns>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Controllers.FranchisesController">
+            <summary>
+            The controller class for the franchise table in the database.
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.FranchisesController.#ctor(AutoMapper.IMapper,MagicTord_N_SondreTheWebAPI.Models.DBContext,MagicTord_N_SondreTheWebAPI.Services.Franchises.IFranchiseService)">
+            <summary>
+            Constructor for the FranchisesController class
+            </summary>
+            <param name="mapper"></param>
+            <param name="context"></param>
+            <param name="franchiseService"></param>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.FranchisesController.GetFranchises">
+            <summary>
+            Gets all franchises from the database
+            </summary>
+            <returns>A list of franchises</returns>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.FranchisesController.GetFranchise(System.Int32)">
+            <summary>
+            Gets a franchise by id from the database
+            </summary>
+            <param name="id"></param>
+            <returns>A franchise</returns>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.FranchisesController.PutFranchise(System.Int32,MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises.FranchisePutDto)">
+            <summary>
+            Updates a franchise in the database
+            </summary>
+            <param name="id"></param>
+            <param name="franchise"></param>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.FranchisesController.PostFranchise(MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises.FranchisePostDto)">
+            <summary>
+            Creates a new franchise in the database
+            </summary>
+            <param name="franchiseDTO"></param>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.FranchisesController.GetMoviesForFranchiseAsync(System.Int32)">
+            <summary>
+            Gets all movies in a franchise from the database
+            </summary>
+            <param name="id"></param>
+            <returns>A list of movies</returns>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.FranchisesController.GetCharactersForFranchiseAsync(System.Int32)">
+            <summary>
+            Gets all charactes in a franchise from the database
+            </summary>
+            <param name="id"></param>
+            <returns>A list of characters</returns>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.FranchisesController.UpdateMoviesForFranchiseAsync(System.Int32[],System.Int32)">
+            <summary>
+            Updates what movies a franchise has in the database
+            </summary>
+            <param name="movieIds"></param>
+            <param name="franchiseId"></param>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.FranchisesController.DeleteFranchise(System.Int32)">
+            <summary>
+            Deletes a franchise from the database
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Controllers.MoviesController">
+            <summary>
+            The controller class for the movie table in the database.
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.MoviesController.#ctor(AutoMapper.IMapper,MagicTord_N_SondreTheWebAPI.Models.DBContext,MagicTord_N_SondreTheWebAPI.Services.Movies.IMovieService)">
+            <summary>
+            Constructor for the MoviesController class
+            </summary>
+            <param name="mapper"></param>
+            <param name="context"></param>
+            <param name="movieService"></param>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.MoviesController.GetMovies">
+            <summary>
+            Gets all movies from the database
+            </summary>
+            <returns>A list of movies</returns>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.MoviesController.GetMovie(System.Int32)">
+            <summary>
+            Gets a movie by id from the database
+            </summary>
+            <param name="id"></param>
+            <returns>A movie</returns>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.MoviesController.PutMovieAsync(System.Int32,MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies.MoviePutDto)">
+            <summary>
+            Updates a movie in the database
+            </summary>
+            <param name="id"></param>
+            <param name="movie"></param>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.MoviesController.PostMovie(MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies.MoviePostDto)">
+            <summary>
+            Creates a new movie in the database
+            </summary>
+            <param name="movieDto"></param>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.MoviesController.DeleteMovie(System.Int32)">
+            <summary>
+            Deletes a movie from the database
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.MoviesController.UpdateCharactersForMovieAsync(System.Int32[],System.Int32)">
+            <summary>
+            Updates the characters that plays in a movie.
+            </summary>
+            <param name="characterIds"></param>
+            <param name="movieId"></param>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Controllers.MoviesController.GetCharactersForMovieAsync(System.Int32)">
+            <summary>
+            Gets all characters that play in a movie from the database
+            </summary>
+            <param name="id"></param>
+            <returns>A list of characters</returns>
+        </member>
         <member name="T:MagicTord_N_SondreTheWebAPI.Migrations.InitialCreate">
             <inheritdoc />
         </member>
@@ -27,6 +205,219 @@
         </member>
         <member name="M:MagicTord_N_SondreTheWebAPI.Migrations.MigrationName.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Models.Character">
+            <summary>
+            Model that reflects what the character table holds in the database. 
+            This is also used to create table if the database does not exist to begin with
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Models.Character.#ctor">
+            <summary>
+            Constructor for the Character class
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Models.CharacterMovie">
+            <summary>
+            Model that reflects what the CharacterMovie table holds in the database. 
+            This is also used to create table if the database does not exist to begin with
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Models.DBContext">
+            <summary>
+            The comntext file of the project. Ensures the creation of the database has the correct relations between tables
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Models.Dtos.Characters.CharacterDto">
+            <summary>
+            The DTO for Character, contains all related data.
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Models.Dtos.Characters.CharacterPostDto">
+            <summary>
+             DTO used for adding a Character to the database.
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Models.Dtos.Characters.CharacterPutDto">
+            <summary>
+            DTO for updating a character in the database
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises.FranchiseDto">
+            <summary>
+            The DTO for Franchise, contains all related data.
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises.FranchisePostDto">
+            <summary>
+            DTO used for adding a Franchise to the database.
+            </summary>
+        </member>
+        <member name="P:MagicTord_N_SondreTheWebAPI.Models.Dtos.Franchises.FranchisePutDto.FranchiseID">
+            <summary>
+            DTO for updating a franchise in the database
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies.MovieDto">
+            <summary>
+            The DTO for Movie, contains all related data.
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies.MoviePostDto">
+            <summary>
+            DTO used for adding a Movie to the database.
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Models.Dtos.Movies.MoviePutDto">
+            <summary>
+            DTO for updating a movie in the database
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Models.Franchise">
+            <summary>
+            Model that reflects what the Franchise table holds in the database. 
+            This is also used to create table if the database does not exist to begin with.
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Models.Franchise.#ctor">
+            <summary>
+            Constructor for the Franchise class
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Models.Movie">
+            <summary>
+            Model that reflects what the character table holds in the database. 
+            This is also used to create table if the database does not exist to begin with
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Models.Movie.#ctor">
+            <summary>
+            Constructor for the Movie class
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Profiles.CharacterProfile">
+            <summary>
+            Mapperclass for the Character table in the database.
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Profiles.CharacterProfile.#ctor">
+            <summary>
+            Constructor for the character mapperclass
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Profiles.FranchiseProfile">
+            <summary>
+            Mapperclass for the Franchise table in the database.
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Profiles.FranchiseProfile.#ctor">
+            <summary>
+            Constructor for the Franchise mapperclass
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Profiles.MovieProfile">
+            <summary>
+            Mapperclass for the Movie table in the database.
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Profiles.MovieProfile.#ctor">
+            <summary>
+            Constructor for the Movie mapperclass
+            </summary>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Services.Characters.CharacterServiceImpl">
+            <summary>
+            Implementation class for the character table in the database
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Services.Characters.CharacterServiceImpl.#ctor(MagicTord_N_SondreTheWebAPI.Models.DBContext,Microsoft.Extensions.Logging.ILogger{MagicTord_N_SondreTheWebAPI.Services.Characters.CharacterServiceImpl})">
+            <summary>
+            Constructor for the Character implementation class
+            </summary>
+            <param name="dBContext"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Services.Characters.ICharacterService">
+            <summary>
+            The interface for all the tasks one can perform with the Character table
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Services.Characters.ICharacterService.GetCharacterMoviesAsync(System.Int32)">
+            <summary>
+            Gets all movies a character appears in
+            </summary>
+            <param name="CharacterId"></param>
+            <returns>A collection of movies</returns>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Services.Franchises.FranchiseServiceImpl">
+            <summary>
+            Implementation class for the movie table in the database
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Services.Franchises.FranchiseServiceImpl.#ctor(MagicTord_N_SondreTheWebAPI.Models.DBContext,Microsoft.Extensions.Logging.ILogger{MagicTord_N_SondreTheWebAPI.Services.Characters.CharacterServiceImpl})">
+            <summary>
+            Constructor for the Franchise implementation class
+            </summary>
+            <param name="dBContext"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Services.Franchises.IFranchiseService">
+            <summary>
+            The interface for all the tasks one can perform with the Franchise table
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Services.Franchises.IFranchiseService.GetFranchiseMoviesAsync(System.Int32)">
+            <summary>
+            Gets all movies that are witihn a franchise
+            </summary>
+            <param name="FranchiseId"></param>
+            <returns>A collection of movies</returns>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Services.Franchises.IFranchiseService.GetFranchiseCharactersAsync(System.Int32)">
+            <summary>
+            Gets all characters that are within a franchise
+            </summary>
+            <param name="FranchiseId"></param>
+            <returns>A collection of characters</returns>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Services.Franchises.IFranchiseService.UpdateFranchiseMoviesAsync(System.Int32[],System.Int32)">
+            <summary>
+            Updates the movies that are invlolved with a franchise
+            </summary>
+            <param name="movieIdS"></param>
+            <param name="FranchiseId"></param>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Services.Movies.IMovieService">
+            <summary>
+            The interface for all the tasks one can perform with the Movie table
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Services.Movies.IMovieService.GetMovieCharactersAsync(System.Int32)">
+            <summary>
+            Gets all characters that play in a movie
+            </summary>
+            <param name="MovieId"></param>
+            <returns>A collection of characters</returns>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Services.Movies.IMovieService.UpdateMovieCharactersAsync(System.Int32[],System.Int32)">
+            <summary>
+            Updates a movie to inlcude new characters. 
+            Movies that a character already plays in are kept to follow through with the many to many relationship
+            </summary>
+            <param name="characterIds"></param>
+            <param name="MovieId"></param>
+        </member>
+        <member name="T:MagicTord_N_SondreTheWebAPI.Services.Movies.MovieServiceImpl">
+            <summary>
+            Implementation class for the movie table in the database
+            </summary>
+        </member>
+        <member name="M:MagicTord_N_SondreTheWebAPI.Services.Movies.MovieServiceImpl.#ctor(MagicTord_N_SondreTheWebAPI.Models.DBContext,Microsoft.Extensions.Logging.ILogger{MagicTord_N_SondreTheWebAPI.Services.Movies.MovieServiceImpl})">
+            <summary>
+            Constructor for the Movie implementation class
+            </summary>
+            <param name="dBContext"></param>
+            <param name="logger"></param>
         </member>
         <member name="T:MagicTord_N_SondreTheWebAPI.Services.SchemaFilter">
             <summary>

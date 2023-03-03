@@ -3,12 +3,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MagicTord_N_SondreTheWebAPI.Services.Characters
 {
+    /// <summary>
+    /// Implementation class for the character table in the database
+    /// </summary>
     public class CharacterServiceImpl : ICharacterService
     {
         
         private readonly DBContext _dBContext;
         private readonly ILogger<CharacterServiceImpl> _logger;
         
+        /// <summary>
+        /// Constructor for the Character implementation class
+        /// </summary>
+        /// <param name="dBContext"></param>
+        /// <param name="logger"></param>
         public CharacterServiceImpl(DBContext dBContext, ILogger<CharacterServiceImpl> logger)
         {
             _dBContext = dBContext;
@@ -128,19 +136,6 @@ namespace MagicTord_N_SondreTheWebAPI.Services.Characters
         public async Task UpdateAsync(Character entity)
         {
             _dBContext.Entry(entity).State = EntityState.Modified;
-            await _dBContext.SaveChangesAsync();
-            
-        }
-        
-        public async Task UpdateCharacterMoviesAsync(HashSet<Movie> movieIDS, int characterID)
-        {
-            Character character = await _dBContext.Characters
-                .Where(p => p.CharacterID == characterID)
-                .FirstAsync();
-            // Set the characters movies
-            character.Movies = movieIDS;
-            _dBContext.Entry(character).State = EntityState.Modified;
-            // Save all the changes
             await _dBContext.SaveChangesAsync();
             
         }

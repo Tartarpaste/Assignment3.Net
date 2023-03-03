@@ -2,6 +2,9 @@
 
 namespace MagicTord_N_SondreTheWebAPI.Models.Dtos.Characters
 {
+    /// <summary>
+    /// The DTO for Character, contains all related data.
+    /// </summary>
     public class CharacterDto
     {
         public int CharacterID { get; set; }
